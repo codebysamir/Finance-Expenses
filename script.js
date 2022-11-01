@@ -1312,10 +1312,10 @@ addTransferEntry.addEventListener('click', () => {
     checkEntryType()
 })
 addPlannedPaymentEntry.addEventListener('click', () => {
-    addMenu.classList.toggle('active')
-    overviewMenu.classList.toggle('active')
-    document.querySelector('.setPaymentMenu').classList.toggle('active')
-    newExpensesEntryPage.classList.toggle('active')
+    //Feature not included yet
+    console.log('feature not included yet');
+    // addMenu.classList.toggle('active')
+    // document.querySelector('.setPaymentMenu').classList.toggle('active')
 })
 
 
