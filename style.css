@@ -1,0 +1,2027 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+*{
+  margin: 0;
+}
+
+:root{
+  --font-fam: 'Roboto', sans-serif;
+  --white-dark: #f8f8ff;
+  --white: #fff;
+  --grey1: #d3d3d3;
+  --grey2: hsl(0, 0%, 50%);
+  --grey3: #e6e6fa;
+  --red: #ff4500;
+  --purple: #7b68ee;
+  --light-black: #181818;
+  --black: #000;
+  --neon-blue: #4058e2;
+  --neon-green: #20d26e;
+  --neon-red: #e24040;
+  --BG-img-neon-green: linear-gradient(45deg, #0fdb68 52%, #b1fdbe 90%);
+  --BG-img-neon-purple: linear-gradient(45deg, #a32bff 52%, #dab1fd 90%);
+  --BG-img-neon-red: linear-gradient(147deg, #ff9292 0%, #e24040 75%);
+  --BG-img-neon-blue: linear-gradient(147deg, #92a6ff 0%, #4058e2 75%);
+  --BG-img-neon-grey: linear-gradient(147deg, #ebeeff 0%, #cbd3f8 75%);
+  --symbol-border: 2px solid var(--grey1);
+  --symbol-radius: 25px;
+  --circle-radius: 50%;
+  --box-radius: 15px;
+  --font-size-Big: 40px;
+  --font-size-Large: 30px;
+  --font-size-Middle: 20px;
+  --font-size-Small: 10px;
+  --tag-green: hsl(160, 51%, 60%);
+  --tag-orange: hsl(34, 51%, 60%);
+  --tag-yellow: hsl(56, 51%, 60%);
+  --tag-red: hsl(0, 51%, 60%);
+  --tag-rosa: hsl(322, 81%, 43%);
+  --tag-purple: hsl(263, 51%, 60%);
+  --tag-turkis: hsl(175, 51%, 60%);
+  --tag-blue: hsl(231, 51%, 60%);
+  --tag-light-green: hsl(160, 51%, 75%);
+  --tag-light-orange: hsl(34, 51%, 75%);
+  --tag-light-yellow: hsl(56, 51%, 75%);
+  --tag-light-red: hsl(0, 51%, 75%);
+  --tag-light-rosa: hsl(322, 81%, 75%);
+  --tag-light-purple: hsl(263, 51%, 75%);
+  --tag-light-turkis: hsl(175, 51%, 75%);
+  --tag-light-blue: hsl(231, 51%, 75%);
+}
+
+.hidden{
+  display: none;
+}
+
+.onlyBorderRadius{
+  border-radius: var(--symbol-radius);
+}
+
+.noCategory{
+  display: none !important;
+}
+
+.accounts-tag, .category-tag, .tagWtBtn{
+  display: inline-flex;
+  gap: 0.5em;
+  align-items: center;
+}
+
+.accounts-tag > *, .category-tag > *{
+  pointer-events: none;
+}
+
+button {
+  border-style: none;
+  border-radius: var(--symbol-radius);
+  padding: 1em;
+  cursor: pointer;
+}
+
+.tags-little{
+  width: fit-content;
+  padding: 0.5em;
+  border-radius: var(--symbol-radius);
+  color: var(--white);
+  cursor: pointer;
+}
+
+.tags-big{
+  width: fit-content;
+  padding: 0.6em 1em;
+  border-radius: var(--symbol-radius);
+  color: var(--white);
+  cursor: pointer;
+}
+
+.tags-circle{
+  border-radius: var(--circle-radius);
+  padding: 1em;
+  width: 1em;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.tags-circle-small{
+  border-radius: var(--circle-radius);
+  padding: 0.3em;
+  width: 1.1em;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.tags-circle-fixed-width{
+  border-radius: var(--circle-radius);
+  padding: 1em;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.border{
+  border: var(--symbol-border);
+  color: var(--black);
+  background-color: transparent;
+}
+
+.box{
+  background-color: var(--grey1);
+  width: fit-content;
+  padding: 1em;
+  text-align: left;
+  border-radius: var(--box-radius);
+  cursor: pointer;
+}
+
+body{
+  font-family: 'Roboto', sans-serif;
+  background-color: #FBAB7E;
+  background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+  text-align: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.container{
+  position: relative;
+  background-color: var(--white-dark);
+  height: 80vh;
+  width: 80vw;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  border-radius: var(--box-radius);
+  border-radius: var(--box-radius);
+}
+
+.topMenu{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1em;
+  box-sizing: border-box;
+  position: fixed;
+  align-items: center;
+  width: 80vw;
+  background-color: var(--white-dark);
+  border-top-left-radius: var(--box-radius);
+  border-top-right-radius: var(--box-radius);
+}
+
+/*<-----Overview Menu------>*/
+.expensesApp{
+  display: none;
+}
+
+.expensesApp.active{
+  display: block;
+}
+
+.overviewTopMenu{
+  display: flex;
+  gap: 1em;
+}
+
+.overviewBody{
+  display: flex;
+  /* justify-content: space-around; */
+  flex-direction: column;
+  margin-top: 5em;
+  margin-bottom: 7em;
+  box-sizing: border-box;
+  padding: 2em;
+}
+
+.overviewTopMenu h1{
+  color: var(--grey1);
+  font-weight: 100;
+}
+
+.cashBalanceOverview{
+  display: flex;
+  gap: 2em;
+  justify-content: center;
+}
+
+.cashBalance{
+  display: flex;
+  gap: 1em;
+  cursor: pointer;
+  align-items: center;
+}
+
+.cashBalance div{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.cashBalance div span:nth-child(1){
+  font-size: 0.7em;
+}
+
+.cashBalance div span:nth-child(2){
+  font-size: 2em;
+  font-weight: 100;
+}
+
+.cashBalance .balanceAmount{
+  font-size: 4em;
+  font-weight: 900;
+}
+
+.cashIncome{
+  box-sizing: border-box;
+  padding: 2em;
+  background-color: #2BFF88;
+  background-image: var(--BG-img-neon-green);
+  width: 250px;
+  /* height: 10vh; */
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--symbol-radius);
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.cashIncome span:nth-child(1){
+  font-size: 1em;
+}
+
+.cashIncome div{
+  font-size: 2em;
+}
+.cashIncome div span:nth-child(1){
+  font-weight: 900;
+}
+.cashIncome div span:nth-child(2){
+  font-weight: 100;
+}
+
+.cashExpenses{
+  box-sizing: border-box;
+  background-color: #ff9292;
+  background-image: var(--BG-img-neon-red);
+  padding: 2em;
+  width: 250px;
+  /* height: 10vh; */
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--symbol-radius);
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.cashExpenses span:nth-child(1){
+  font-size: 1em;
+}
+
+.cashExpenses div{
+  font-size: 2em;
+}
+
+.cashflow{
+  width: 90%;
+  padding: 2em;
+  border-bottom-style: solid;
+  border-color: #d4d4d4;
+  color: var(--neon-green);
+  font-weight: 900;
+  font-size: 1.1em;
+}
+
+.negativCashflow{
+  color: var(--neon-red)
+}
+
+.transactionHistory{
+  display: grid;
+  justify-content: center;
+  gap: 3em;
+  width: 100%;
+}
+
+.balanceEntryDate{
+  display: grid;
+  gap: 1em;
+}
+
+.balanceEntryDate.notDisplayed{
+  display: none;
+}
+
+.balanceEntry, .balanceEntryInfoTotal{
+  width: 50vw;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+}
+
+.balanceEntry .datum, .balanceEntryDate .datum{
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+}
+
+.balanceEntry .amount, .balanceEntryDate .amount{
+  padding: 1em;
+  font-weight: 900;
+  align-self: center;
+}
+
+.balanceEntry .balanceInfos{
+  background-color: var(--grey3);
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 15px;
+  display: grid;
+  grid-column: 1 / 3;
+  justify-items: center;
+  gap: 1em;
+}
+
+.balanceEntry .balanceInfos .tags{
+  display: flex;
+  gap: 5em;
+}
+
+.balanceEntry .balanceInfos .amount{
+  font-weight: 900;
+  font-size: 1.1em;
+}
+
+.incomeEntry .amount{
+  color: var(--neon-green)
+}
+.expensesEntry .amount{
+  color: var(--neon-red)
+}
+.transferEntry .amount{
+  color: var(--neon-blue)
+}
+
+.balanceEntry .balanceInfos .lohn-tag:nth-child(1){
+  background-color: var(--tag-green);
+}
+
+.balanceEntry .balanceInfos .cash-tag:nth-child(2){
+  background-color: var(--white);
+  color: var(--black)
+}
+
+.balanceEntry .balanceInfos .tags .accounts-tag, .balanceEntry .balanceInfos .tags .transfer-tag{
+  background-color: var(--white);
+  color: var(--black)
+}
+
+.overviewBottomMenu{
+  background-color: ghostwhite;
+  padding: 1em;
+  position: fixed;
+  z-index: 10;
+  width: 80%;
+  height: auto;
+  bottom: 10%;
+  display: flex;
+  justify-content: space-evenly;
+  opacity: 0.95;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  border-bottom-left-radius: var(--box-radius);
+  border-bottom-right-radius: var(--box-radius);
+}
+
+.overviewBottomMenu #addBtn{
+  padding: 1.3em 1.5em;
+  margin-top: -2.5em;
+  color: white;
+  background-image: var(--BG-img-neon-blue);
+  font-size: var(--font-size-Middle);
+}
+.overviewBottomMenu #addBtn.rotateBack{
+  animation: rotateBack 250ms ease-in backwards;
+}
+
+@keyframes rotateBack{
+  0% {
+    transform: rotate(45deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.overviewBottomMenu > *{
+  cursor: pointer;
+}
+
+.overviewBottomMenu #homeBtn, .overviewBottomMenu #accountsBtn{
+  width: 30%;
+  justify-content: center;
+}
+
+.overviewBottomMenu #homeBtn.active{
+  font-weight: bold;
+  color: var(--neon-blue);
+}
+
+/*<--------------Accounts Menu------------->*/
+
+.accounts{
+  display: none;
+}
+
+.accounts.active{
+  display: block;
+}
+
+/* .accountsTopMenu .fa-circle-chevron-left{
+  color: lightgray;
+}
+
+.accountsTopMenu .fa-list-ul{
+  background-color: lightgray;
+} */
+
+.accountsBody{
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  align-items: center;
+  padding: 2em;
+  margin-top: 6em;
+  margin-bottom: 6em;
+}
+
+.accountEntry{
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  border: var(--symbol-border);
+  border-radius: var(--box-radius);
+  cursor: pointer;
+}
+
+.accountEntry > *{
+  pointer-events: none;
+}
+
+.balanceThisMonth{
+  display: flex;
+  font-size: min(1.2vw);
+}
+
+.accountInfo{
+  padding: 2em;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.accountInfo span:nth-child(1){
+  text-align: left;
+  font-size: 1.2em;
+  padding-bottom: 1em;
+}
+
+.accountInfo span:nth-child(1){
+  font-size: 1.5em;
+}
+
+.accountInfo div span:nth-child(1) {
+  font-weight: 900;
+}
+
+.accountIncome{
+  width: 43%;
+  padding: 1em;
+  border-right: lightgrey;
+  border-right-style: solid;
+  border-right-width: 1px;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.accountExpense{
+  width: 43%;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.accounts .overviewBottomMenu #addBtn{
+  background-image: var(--BG-img-neon-green);
+}
+
+.accounts .overviewBottomMenu #accountsBtn.active{
+  color: var(--neon-green);
+  font-weight: bold;
+}
+
+/*<--------------Income Menu------------->*/
+
+.income{
+  display: none;
+}
+
+.income.active{
+  display: block;
+}
+
+.incomeTopMenu .fa-xmark{
+  padding: 1em 1.15em;
+  border-radius: var(--symbol-radius);
+  border: var(--symbol-border);
+}
+
+/* .incomeTopMenu span:nth-child(2){
+  border: var(--symbol-border);
+  border-radius: var(--symbol-radius);
+  padding: 1em;
+} */
+
+.incomeTopMenu .fa-plus{
+  padding: 1em 1.05em;
+  border-radius: var(--symbol-radius);
+  background-color: turquoise;
+}
+
+.incomeBody{
+  padding: 5em 2em 2em;
+  /* height: 60vh; */
+  overflow-y: scroll;
+}
+
+.incomeBody h2{
+  font-size: 2em;
+}
+
+.incomeBody .incomeTotal{
+  padding: 1em 0 3em;
+}
+
+.incomeBody .incomeTotal span:nth-child(2){
+  font-size: 4em;
+  width: 100%;
+}
+
+.incomeBody .categoriesStats{
+  display: flex;
+  box-sizing: border-box;
+  padding: 0 3em;
+  gap: 6em;
+}
+
+.incomeBody .graphStats{
+  height: 300px;
+  width: 300px;
+}
+
+.incomeBody .transactionHistory{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1em;
+}
+
+.incomeBody .chartIncomeEntry{
+  display: flex;
+  justify-content: space-between;
+  width: 30vw;
+  height: fit-content;
+  border-radius: var(--box-radius);
+  background-color: mediumslateblue;
+}
+
+.chartIncomeEntry .incomeIcon{
+  padding: 1em;
+  width: 10%;
+  font-size: 1.5em;
+}
+
+.chartIncomeEntry div:nth-child(2){
+  padding: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 70%;
+}
+
+
+.chartIncomeEntry div:nth-child(2) span:nth-child(1){
+  width: 50%;
+  text-align: left;
+}
+
+.chartIncomeEntry div:nth-child(2) span:nth-child(2){
+  font-size: 1em;
+  width: 50%;
+}
+
+/*<--------------Expenes Menu------------->*/
+
+.expenses{
+  display: none;
+}
+
+.expenses.active{
+  display: block;
+}
+
+.expensesTopMenu .fa-xmark{
+  padding: 1em 1.15em;
+  border-radius: 25px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: lightgrey;
+}
+
+/* .expensesTopMenu span:nth-child(2){
+  border-style: solid;
+  border-width: 2px;
+  border-color: lightgrey;
+  border-radius: 25px;
+  align-self: center;
+  padding: 1em;
+} */
+
+.expensesTopMenu .fa-plus{
+  padding: 1em 1.05em;
+  border-radius: 25px;
+  background-color: rgb(48, 54, 54);
+  color: white;
+}
+
+.expensesBody{
+  padding: 7em 2em 2em;
+  height: 60vh;
+  overflow-y: scroll;
+}
+
+.expensesBody h2{
+  font-size: 2em;
+  padding: 1em;
+}
+
+.expensesBody .expensesTotal span:nth-child(1){
+  font-size: 2em;
+  width: 100%;
+}
+
+.expensesBody .categoriesStats{
+  display: flex;
+  box-sizing: border-box;
+  padding: 1em;
+  gap: 2em;
+}
+
+.expensesBody .graphStats{
+  height: 500px;
+  width: 500px;
+}
+
+.expensesBody .transactionHistory{
+  display: grid;
+  gap: 1em;
+}
+
+.expensesBody .chartExpensesEntry{
+  display: flex;
+  justify-content: space-between;
+  width: 30vw;
+  border-radius: 15px;
+  background-color: mediumslateblue;
+  margin: auto;
+}
+
+.chartExpensesEntry .expensesIcon{
+  padding: 1em;
+  width: 10%;
+  font-size: 1.5em;
+}
+
+.chartExpensesEntry div:nth-child(2){
+  padding: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 70%;
+}
+
+
+.chartExpensesEntry div:nth-child(2) span:nth-child(1){
+  width: 50%;
+  text-align: left;
+}
+
+.chartExpensesEntry div:nth-child(2) span:nth-child(2){
+  font-size: 1em;
+  width: 50%;
+}
+
+/*<--------------Current Balance Menu------------->*/
+
+.currentBalance{
+  display: none;
+}
+
+.currentBalance.active{
+  display: block;
+}
+
+.monthlyView{
+  padding: 1em;
+  border-radius: var(--symbol-radius);
+  border: var(--symbol-border);
+  display: flex;
+  justify-content: space-between;
+  width: 30vw;
+  margin: auto;
+}
+
+.monthlyView i{
+  cursor: pointer;
+}
+
+.monthlyView span:nth-child(2){
+  cursor: pointer;
+}
+
+.currentBalanceBody{
+  padding-top: 6em;
+}
+
+.balanceStatus{
+  padding: 2em;
+}
+
+.balanceStatus h2{
+  color: grey;
+  padding-bottom: 0.5em;
+}
+
+.balanceStatus span{
+  font-size: 3.5em;
+}
+
+.balanceStatus span b{
+  font-weight: 900;
+}
+
+.plannedPayBalance{
+  padding: 2em;
+  width: 80%;
+  margin: auto;
+  border-top-style: solid;
+  border-top-color: lightgrey;
+}
+
+.plannedPayBalance h2{
+  color:orange;
+  padding-bottom: 0.5em;
+}
+
+.plannedPayBalanceInfo{
+  width: 50%;
+  height: 5vh;
+  padding: 1em;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.plannedPayBalanceInfo span:nth-child(1){
+  font-size: 2em;
+  width: 60%;
+}
+
+.plannedPayBalanceInfo span:nth-child(2), .plannedPayBalanceInfo span:nth-child(3){
+  width: 30%;
+  height: 50%;
+  text-align: right;
+}
+
+/*<--------------New IncomeEntry Menu------------->*/
+
+.newIncomeEntryPage{
+  display: none;
+}
+
+.newIncomeEntryPage.active{
+  display: block;
+}
+
+/*<--------------New ExpensesEntry Menu------------->*/
+
+.newExpensesEntryPage{
+  display: none;
+}
+
+.newExpensesEntryPage.active{
+  display: block;
+}
+
+/*<--------------New TransferEntry Menu------------->*/
+
+.newTransferEntryPage{
+  display: none;
+}
+
+.newTransferEntryPage.active{
+  display: block;
+}
+
+.newTransferEntryPage .actionBottomMenu{
+  /* min-height: 40%; */
+  gap: 0.5em;
+}
+
+/*<--------------IncomeEntry Menu------------->*/
+
+.incomeEntryPage{
+  display: none;
+}
+
+.incomeEntryPage.active{
+  display: block;
+}
+
+/*<--------------ExpensesEntry Menu------------->*/
+
+.expensesEntryPage{
+  display: none;
+}
+
+.expensesEntryPage.active{
+  display: block;
+}
+
+/*<--------------TransferEntry Menu------------->*/
+
+.transferEntryPage{
+  display: none;
+}
+
+.transferEntryPage.active{
+  display: block;
+}
+
+.transferEntryPage .actionBottomMenu{
+  gap: 0.5em;
+}
+/*<--------------- Entry Detail------------------->*/
+
+.entryDetailTopMenu button{
+  border: var(--symbol-border);
+  background-color: transparent;
+}
+
+.entryDetailTopMenu button.deleteBtn{
+  border-style: none;
+  background-color: var(--red);
+  color: var(--white);
+}
+
+.entryDetail .fa-arrow-down-short-wide, .entryDetail .fa-arrow-up-wide-short, .entryDetail .fa-align-left, 
+.entryDetail .fa-calendar, .entryDetail .fa-money-check-dollar, .entryDetail .fa-house, 
+.entryDetail .fa-floppy-disk, .entryDetail .fa-dollar-sign, .entryDetail .fa-building-columns, .entryDetail .fa-plus{
+  margin-right: 0.5em;
+}
+
+.entryDetailBody .fa-chevron-right{
+  margin-left: 0.5em;
+}
+
+.entryDetailBody{
+  display: flex;
+  flex-direction: column;
+  width: clamp(40vh, 40%, 60%);
+  /* width: max(40vh, 40%); */
+  height: 46%;
+  gap: 1em;
+  margin: auto;
+  overflow-y: scroll;
+  padding: 5em;
+}
+
+.entryDetailBody.withSmallBottomMenu{
+  height: 71%;
+}
+
+.entryDetailBody .title{
+  font-size: 1.2em;
+  color: var(--grey2);
+  border-bottom: var(--symbol-border);
+  padding: 0.5em;
+  outline: none;
+  display: inline-block;
+}
+
+.entryDetailBody .title:empty::before{
+  content: attr(data-placeholder);
+  display: inline-block;
+}
+
+.entryDetailBody .title:empty:focus:before{
+  content: attr(data-focused-advice);
+}
+
+.entryDetailBody .creationDate{
+  width: 75%;
+}
+
+.entryDetailBody input{
+  width: 100%;
+  font-family: var(--font-fam);
+  font-size: 1em;
+}
+
+.entryDetailBody input::placeholder{
+  color: var(--black);
+  font-weight: bolder;
+  opacity: 1;
+}
+
+
+.entryDetailBody .creationDate strong{
+  margin-right: 1em;
+  color: var(--grey2);
+}
+
+.entryDetailBody #createdOn{
+  outline: none;
+  background-color: transparent;
+  border: none;
+}
+
+/* .entryDetailBody .creationDate::before{
+  position: relative;
+  pointer-events: none;
+} */
+
+/* .entryDetailBody input{
+  position: absolute;
+  top: 42.5%;
+  left: 45%;
+  width: 12%;
+  opacity: 100;
+} */
+
+.entryDetailBody .description > *{
+  pointer-events: none;
+}
+
+/* .entryDetailBody .categoryTag{
+  background-color: #7b68ee;
+  width: fit-content;
+  padding: 1em;
+  text-align: left;
+  border-radius: 25px;
+  color: white;
+  cursor: pointer;
+} */
+
+.entryDetailBody .categoryField > *{
+  pointer-events: none;
+}
+
+.actionBottomMenu{
+  background-color: var(--white-dark);
+  display: none;
+  flex-direction: column;
+  /* justify-content: space-around; */
+  gap: 1em;
+  position: fixed;
+  box-shadow: 0 -10px 10px lightgrey;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  min-height: 30%;
+  width: 80vw;
+  box-sizing: border-box;
+  padding: 0.5em;
+  bottom: 10%;
+  z-index: 10;
+  transition: 250ms ease-in-out;
+  border-bottom-left-radius: var(--box-radius);
+  border-bottom-right-radius: var(--box-radius);
+}
+
+.actionBottomMenu.active{
+  display: flex;
+}
+
+.actionBottomMenu .rows{
+  padding: 1em;
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.rows .tags-big{
+  border: var(--symbol-border);
+  background-color: transparent;
+  color: var(--black);
+}
+
+.rows .accounts-tag.active{
+  border: none;
+  color: var(--white);
+}
+
+.actionBottomMenu .amount{
+  display: flex;
+  justify-content: center;
+  gap: 0.3em;
+}
+
+.actionBottomMenu .amountToAdd{
+  /* padding: 1em; */
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+/* .transferEntryPage .actionBottomMenu, .newTransferEntryPage .actionBottomMenu{
+  height: 40%;
+} */
+
+.lohnCategory{
+  background-color: var(--purple);
+  color: var(--white)
+}
+
+.smallActionBottomMenu{
+  background-color: var(--white-dark);
+  display: none;
+  flex-direction: column;
+  /* justify-content: space-around; */
+  /* gap: 0.5em; */
+  position: fixed;
+  box-shadow: 0 -10px 10px lightgrey;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  min-height: 15%;
+  box-sizing: border-box;
+  padding: 0.5em;
+  width: 80vw;
+  bottom: 10%;
+  z-index: 10;
+  border-bottom-left-radius: var(--box-radius);
+  border-bottom-right-radius: var(--box-radius);
+}
+
+.smallActionBottomMenu.active{
+  display: flex;
+}
+
+.smallActionBottomMenu .amount{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.smallActionBottomMenu .addedToAccount{
+  display: grid;
+  gap: 0.5em;
+}
+
+.smallActionBottomMenu .rows{
+  display: flex;
+  justify-content: space-evenly;
+  gap: 1em;
+  font-size: small;
+}
+
+
+/*<--------------Tag-Details Menu------------->*/
+
+.tagDetails{
+  display: none;
+}
+
+.tagDetails.active{
+  display: block;
+}
+
+.tagTopMenu{
+  /* background-color: var(--purple); */
+  background-color: inherit;
+}
+
+.tagTopMenu button{
+  background-color: transparent;
+  border: var(--symbol-border);
+  color:var(--white-dark)
+}
+
+.tagTopMenu button:nth-child(3){
+  background-color: var(--red);
+  border: none;
+}
+
+.tagBody{
+  padding: 6em 1em 1em;
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1.5fr;
+  grid-template-rows: 250px;
+  gap: 2em;
+  width: 70%;
+  margin: auto;
+  color: var(--white);
+}
+
+.tagBody .cashBalForTag{
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.tagBody .cashBalForTag h2{
+  font-size: var(--font-size-Large);
+}
+
+.tagBody .cashBalForTag div{
+  font-size: var(--font-size-Big);
+}
+
+.tagBox{
+  background-color: var(--light-black);
+  border-radius: var(--symbol-radius);
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.incomeForTag button{
+  background-color: var(--neon-green);
+
+}
+
+.tagOverviewBottomMenu{
+  background-color: var(--white);
+  color: var(--black);
+  min-height: 60vh;
+  border-top-left-radius: var(--symbol-radius);
+  border-top-right-radius: var(--symbol-radius);
+  padding: 1em;
+  border-bottom-left-radius: var(--box-radius);
+  border-bottom-right-radius: var(--box-radius);
+}
+
+
+/*<--------------Overlay------------->*/
+
+.overlay{
+  width: 80%;
+  height: 80%;
+  background-color: var(--white-dark);
+  opacity: 0.95;
+  position: absolute;
+  z-index: 12;
+  pointer-events: fill;
+  display: none;
+  border-radius: var(--box-radius);
+  border-radius: var(--box-radius);
+}
+
+.overlay.active{
+  display: block;
+}
+
+/*<-------------- ------------->*/
+
+.popupMenu2{
+  position: absolute;
+  z-index: 13;
+  width: 40%;
+  height: 35vh;
+  bottom: 7.8%;
+  /* left: 29.13%; */
+  /* margin-inline: auto; */
+  padding-bottom: 3em;
+  /* flex-wrap: wrap; */
+  flex-direction: column;
+  /* justify-content: space-between; */
+}
+
+/*<--------------Add Menu------------->*/
+
+.add-container{
+  display: none;
+}
+
+.add-container.active{
+  display: block;
+}
+
+.add-container .addMenu{
+  display: flex;
+  flex-direction: row;
+  height: 60%;
+  justify-content: space-evenly;
+}
+
+.add-container .add{
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  width: 3vw;
+  height: auto;
+  justify-content: space-evenly;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.add-container .add:nth-child(2){
+  display: flex;
+  justify-content: flex-start;
+}
+
+.add-container .add span{
+  margin-top: 0.5em;
+}
+
+.add-container .plannedPayment button{
+  border: var(--symbol-border);
+  background-color: var(--white-dark);
+}
+
+.add-container .close button{
+  color:var(--white);
+  background-color: var(--grey2);
+  font-size: var(--font-size-Middle);
+  padding: 1.3em;
+}
+.add-container .close button.rotateBack{
+  animation: rotate-plus 250ms ease-in-out forwards;
+}
+@keyframes rotate-plus{
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(45deg);
+  }
+}
+
+.add-container .addIncome{
+  background-image: var(--BG-img-neon-green);
+  color: var(--white);
+}
+
+.add-container .addExpense{
+  background-image: var(--BG-img-neon-red);
+  color: var(--white);
+}
+
+.add-container .accountTransfer{
+  background-image: var(--BG-img-neon-blue);
+  color: var(--white);
+}
+
+/*<-------------- ------------->*/
+
+.popupMenu{
+  background-color: var(--white-dark);
+  position: absolute;
+  z-index: 13;
+  bottom: 10%;
+  width: 80%;
+  flex-direction: column;
+  justify-content: space-around;
+  border-top-left-radius: var(--symbol-radius);
+  border-top-right-radius: var(--symbol-radius);
+  box-shadow: 0 -1px 20px var(--grey1);
+  border-bottom-left-radius: var(--box-radius);
+  border-bottom-right-radius: var(--box-radius);
+}
+
+/*<--------------Choose Account Menu------------->*/
+
+.chooseAccountMenu{
+  display: none;
+  height: 70vh;
+}
+
+.chooseAccountMenu.active{
+  display: flex;
+}
+
+.amountToAdd{
+  display: flex;
+  margin-inline: auto;
+}
+
+.amountToAdd .amount{
+  font-size: var(--font-size-Big);
+}
+
+.numberKeypad{
+  display: grid;
+  grid-template-columns: 50px 50px 50px;
+  gap: 1em;
+  justify-content: center;
+}
+
+.closeBottomMenu{
+  display: flex;
+  justify-content: space-between;
+  margin-inline: 1em;
+}
+
+.closeBottomMenu button{
+  border: var(--symbol-border);
+  background-color: var(--white-dark);
+}
+
+.closeBottomMenu button:nth-last-child(1){
+  color: var(--white);
+  background-image: var(--BG-img-neon-green);
+  border: none;
+}
+
+/*<--------------Choose Category Menu------------->*/
+
+.chooseCategoryMenu{
+  display: none;
+  height: 30vh;
+}
+
+.chooseCategoryMenu.active{
+  display: flex;
+}
+
+.chooseCategoryMenu .rows span:last-child{
+  border-color: var(--black);
+}
+
+.category-tag.active{
+  border-color: var(--black);
+  pointer-events: fill;
+}
+
+/*<--------------Create Category Menu------------->*/
+
+.createCategoryMenu{
+  display: none;
+  justify-content: space-around;
+  height: 50vh;
+}
+
+.createCategoryMenu.active{
+  display: flex;
+}
+
+.categoryName{
+  height: 8vh;
+}
+
+.categoryName span{
+  background-color: var(--tag-blue);
+}
+
+.categoryName input{
+  background-color: transparent;
+  color: var(--grey2);
+  border: none;
+  border-bottom: var(--symbol-border);
+  padding-bottom: 1em;
+  font-size: var(--font-size-Middle);
+  margin-left: 1em;
+  outline: none;
+  width: 15%;
+  transition: 250ms ease-in-out;
+}
+
+.categoryName input:focus{
+  width: 20%;
+  border-color: var(--neon-green);
+}
+
+.colorRow{
+  display: flex;
+  padding: 1.2em;
+  height: 5vh;
+  gap: 1em;
+  overflow-x: scroll;
+}
+
+.colorRow .tags-circle{
+  width: 0.5vw;
+}
+
+.colorRow .tags-circle.active{
+  border-color: var(--light-black);
+  box-shadow: 0px 0px 15px 5px var(--light-black);
+}
+
+/*<--------------Choose Icon Menu------------->*/
+
+.chooseIconMenu{
+  display: none;
+  height: clamp(200px, 70vh, 600px);
+}
+
+.chooseIconMenu.active{
+  display: flex;
+}
+
+.chooseIconMenu h2, .chooseIconMenu .closeBottomMenu{
+  padding: 1em;
+}
+
+.iconGrid{
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1em;
+  margin: auto;
+  overflow-y: scroll;
+  font-size: var(--font-size-Middle);
+  scrollbar-width: none;
+}
+
+.iconGrid span{
+  color: var(--black);
+  border: var(--symbol-border);
+}
+
+.iconGrid span.active{
+  background-color: var(--tag-blue);
+  color: var(--white);
+  border: none
+}
+
+/*<--------------Edit Category Menu------------->*/
+
+.editCategoryMenu{
+  display: none;
+  justify-content: space-around;
+  height: clamp(10vh, 50vh, 80vh);
+}
+
+.editCategoryMenu.active{
+  display: flex;
+}
+
+/*<--------------New Account Menu------------->*/
+
+.newAccountMenu{
+  display: none;
+  height: 50vh;
+}
+
+.newAccountMenu.active{
+  display: flex;
+}
+
+.accountName{
+  height: 8vh;
+}
+
+.accountName span{
+  background-color: var(--tag-blue);
+}
+
+.accountName input{
+  background-color: transparent;
+  color: var(--grey2);
+  border: none;
+  border-bottom: var(--symbol-border);
+  padding-bottom: 1em;
+  font-size: var(--font-size-Middle);
+  margin-left: 1em;
+  outline: none;
+  width: 15%;
+  transition: 250ms ease-in-out;
+}
+
+.accountName input:focus{
+  width: 20%;
+  border-color: var(--neon-green);
+}
+
+.newAccountMenu .accountBalance{
+  border-top: var(--symbol-border);
+  padding-top: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.newAccountMenu .accountBalance span:first-child{
+  text-transform: uppercase;
+  font-size: var(--font-size-Small);
+  color: var(--grey2);
+  font-weight: 900;
+}
+
+/*<--------------Edit Account Menu------------->*/
+
+.editAccountMenu{
+  display: none;
+  height: 50vh;
+}
+
+.editAccountMenu.active{
+  display: flex;
+}
+
+.editAccountMenu .accountBalance{
+  border-top: var(--symbol-border);
+  padding-top: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.editAccountMenu .accountBalance span:first-child{
+  text-transform: uppercase;
+  font-size: var(--font-size-Small);
+  color: var(--grey2);
+  font-weight: 900;
+}
+
+/*<--------------Delete Confirmation Menu------------->*/
+
+.deleteConfirmationMenu{
+  display: none;
+  justify-content: space-around;
+  height: clamp(20vh, 30vh, 50vh);
+}
+
+.deleteConfirmationMenu.active{
+  display: flex;
+}
+
+.deleteConfirmationMenu h2{
+  color: var(--neon-red)
+}
+
+.deleteConfirmationMenu .closeBottomMenu button:last-child{
+  background-image: var(--BG-img-neon-red);
+}
+
+/*<--------------Edit Description Menu------------->*/
+
+.editDescriptionMenu{
+  display: none;
+  justify-content: space-around;
+  height: clamp(20vh, 30vh, 50vh);
+}
+
+.editDescriptionMenu.active{
+  display: flex;
+}
+
+.editDescriptionMenu input{
+  text-align: center;
+  background-color: transparent;
+  border: none;
+  font-size: var(--font-size-Middle);
+  outline: none;
+}
+
+/*<--------------Set Transaction Menu------------->*/
+
+.setTransactionMenu{
+  display: none;
+  height: 30vh;
+}
+
+.setTransactionMenu.active{
+  display: flex;
+}
+
+.setTransactionMenu .transactionTypeRow{
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+}
+
+.setTransactionMenu .transactionTypeRow .box.active{
+  background-image: var(--BG-img-neon-green);
+  color: var(--white);
+}
+
+/*<--------------Set Payment Menu------------->*/
+
+.setPaymentMenu{
+  display: none;
+  height: 30vh;
+}
+
+.setPaymentMenu.active{
+  display: flex;
+}
+
+.setPaymentMenu .transactionTypeRow{
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+}
+
+.setPaymentMenu .transactionTypeRow .box.active{
+  background-image: var(--BG-img-neon-green);
+  color: var(--white);
+}
+
+/*<--------------Choose Month Menu------------->*/
+
+.chooseMonthMenu{
+  display: none;
+  height: 70vh;
+}
+
+.chooseMonthMenu.active{
+  display: flex;
+}
+
+.chooseMonthMenu .rows .month-tag.active{
+  background-image: var(--BG-img-neon-blue);
+  color: var(--white);
+  border: none;
+}
+
+.chooseMonthMenu h3{
+  color: var(--grey2)
+}
+
+.chooseMonthMenu .tags-big{
+  color: var(--black);
+  border: var(--symbol-border);
+}
+
+.monthsRow{
+  display: flex;
+  gap: 0.5em;
+  padding: 0 1em;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  scrollbar-width: none;
+}
+
+.customRange{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.customRange .fromDate{
+  width: 12em;
+  font-size: 1em;
+  background-color: transparent;
+  font-weight: bold;
+  word-spacing: 6.6em;
+  padding-left: 1.5em;
+}
+
+.customRange .toDate{
+  width: 12em;
+  font-size: 1em;
+  background-color: transparent;
+  font-weight: bold;
+  word-spacing: 8em;
+  padding-left: 1.5em;
+}
+
+.customRange .toDate.active, .customRange .fromDate.active{
+  background-color: var(--neon-blue);
+  color: var(--white);
+}
+
+.customRange input[type='date']:focus{
+  font-family: var(--font-fam);
+  font-weight: bold;
+  outline: none;
+}
+
+.inTheLast{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+.inTheLast select{
+  background-color: transparent;
+  font-size: 1em;
+}
+
+.inTheLast input{
+  width: 3vw;
+  font-size: 1em;
+  background-color: transparent;
+}
+
+.inTheLast input.active, .inTheLast select.active{
+  background-color: var(--neon-blue);
+  color: var(--white);
+}
+
+.allTime{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.allTime span.active{
+  background-image: var(--BG-img-neon-blue);
+  border: none;
+  color: var(--white);
+  padding: 0.7em 1em;
+  border-radius: var(--symbol-radius);
+}
+
+.chooseMonthMenu .closeBottomMenu button.deactivated{
+  background-color: var(--grey2);
+  background-image: none;
+  pointer-events: none;
+}
+
+/*<-------------- Plan For Menu------------->*/
+
+.planForMenu{
+  display: none;
+  height: 50vh;
+}
+
+.planForMenu.active{
+  display: flex;
+  height: 50vh;
+}
+
+.amountTime{
+  background-color: var(--grey1);
+  color: var(--grey2);
+  margin-inline: auto;
+  padding: 1em;
+}
+
+.amountTime span.active{
+  background-image: var(--BG-img-neon-blue);
+}
+
+.planForMenu .startsOn input{
+  font-size: 1em;
+  outline: none;
+  width: 10vw;
+}
+
+.repeatsEvery{
+  border-top: var(--symbol-border);
+  padding-top: 1em;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(100%);
+}
+
+/*<--------------Reorder Accounts Menu------------->*/
+
+.reorderAccounts{
+  display: none;
+}
+
+.reorderAccounts.active{
+  display: block;
+}
+
+.reorderAccounts.popupMenu{
+  padding: 1em;
+  box-sizing: border-box;
+}
+
+.reorderAccounts h2{
+  color: var(--grey1);
+}
+
+.reorderList{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  padding: 3em;
+}
+
+.draggable{
+  cursor: grab;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-align: left;
+}
+
+.draggable.dragging{
+  cursor: grabbing;
+  opacity: 0.5;
+}
+
+/*<--------------Categories Menu------------->*/
+
+.categories{
+  display: none;
+}
+
+.categories.active{
+  display: block;
+}
+
+/* .categoriesTopMenu span:nth-child(1){
+  background-color: lightgray;
+} */
+
+.categoriesBody{
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  align-items: center;
+  padding: 2em;
+  margin-top: 6em;
+  margin-bottom: 6em;
+}
+
+.categorieEntry{
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  border: var(--symbol-border);
+  border-radius: var(--box-radius);
+  cursor: pointer;
+}
+
+.categorieEntry > *{
+  pointer-events: none;
+}
+
+.balanceThisMonth{
+  display: flex;
+  font-size: min(1.2vw);
+}
+
+.categorieInfo{
+  padding: 2em;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.categorieInfo span:nth-child(1){
+  text-align: left;
+  font-size: 1.2em;
+  padding-bottom: 1em;
+}
+
+.categorieInfo span:nth-child(1){
+  font-size: 1.5em;
+}
+
+.categorieInfo div span:nth-child(1) {
+  font-weight: 900;
+}
+
+.categorieIncome{
+  width: 43%;
+  padding: 1em;
+  border-right: lightgrey;
+  border-right-style: solid;
+  border-right-width: 1px;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.categorieExpense{
+  width: 43%;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.categories .overviewBottomMenu #addBtn{
+  background-image: var(--BG-img-neon-purple);
+}
+
+/* ////////////////////// Search Result Menu /////////////////////////// */
+
+.searchResultMenu{
+  display: none;
+}
+
+.searchResultMenu.active{
+  display: block;
+}
+
+.searchBox{
+  padding: 0.5em 1em;
+  margin: 0 auto;
+}
+
+#searchInput{
+  padding: 0.5em;
+  outline: none;
+  border: none;
+  text-align: center;
+  font-size: 1em;
+  background-color: transparent;
+}
+
+.searchResultBody{
+  padding: 6em 0 2em;
+  display: grid;
+  place-items: center;
+  gap: 1em;
+}
+
+/* ////////////////////// Nav SettingsMenu /////////////////////////// */
+
+nav.settingsMenu{
+  top: 4.75rem;
+  opacity: 1;
+  transition: 250ms ease-in-out;
+  justify-content:center;
+  gap: 4em;
+}
+
+nav.settingsMenu.hidden{
+  transform: translateY(50px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+nav.settingsMenu span:last-child{
+  margin-left: auto;
+}
+
+nav.settingsMenu h1{
+  color: var(--grey1);
+  font-weight: 100;
+  font-size: 2em;
+}
+
+nav #closeSettings i{
+  background-image: var(--BG-img-neon-grey);
+}
+
+nav #deleteUserDataBtn > *:hover{
+  background-color: var(--neon-red);
+}
+
+nav #categoriesBtn > *:hover{
+  background-color: var(--tag-purple);
+}
+
+nav #searchBtn > *:hover{
+  background-color: var(--tag-light-orange);
+}
+
+nav.settingsMenu > * > *:hover{
+  animation: bubbleUp 250ms ease-in forwards;
+  color: var(--white);
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes bubbleUp {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}
+
+/* ////////////////////// NO TRANSACTION TEXT /////////////////////////// */
+
+.noTransactionsText{
+  font-size: 2em;
+  color: var(--grey1);
+  padding: 2em;
+}
+
+/* ////////////////////// PREV MONTH & NEXT MONTH - HIDDEN CLASS /////////////////////////// */
+
+.prevMonth.hidden, .nextMonth.hidden{
+  /* display: none; */
+  visibility: hidden;
+}

@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="script.js" charset="utf-8" defer></script>
+  <script src="https://kit.fontawesome.com/1f679c8769.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+
+  <title>Expenses App</title>
+</head>
+<body>
+  <!-- <h1>Expense Manager App</h1> -->
+  <div class="expensesApp container active">
+    <div class="overviewTopMenu topMenu">
+      <h1>Overview</h1>
+      <!-- <span id="monthPicker" class="monthFilter tags-big border tagWtBtn"><i class="fa-solid fa-calendar"></i>&nbsp "März"</span> -->
+      <div class="monthlyView">
+        <span class="prevMonth" title="previous Month"><i class="fa-solid fa-angle-left"></i></span>
+        <span id="monthPicker" title="Month Filter Menu" class="monthFilter tagWtBtn"><i class="fa-solid fa-calendar"></i>März</span>
+        <span class="nextMonth" title="next Month"><i class="fa-solid fa-angle-right"></i></span>
+      </div>      
+      <span id="settings" title="Settings Menu"><i class="fa-solid fa-bars-staggered tags-circle border"></i></span>
+    </div>
+    <div class="overviewBody">
+      <!-- <div class="overviewStatistic-ct">
+        <span>Statistik per</span>
+        <h2>Tag</h2>
+        <h2>Monat</h2>
+        <h2>Jahr</h2>
+      </div> -->
+      <div class="cashBalanceOverview">
+        <div class="cashBalance">
+          <div>
+            <span>Cash Balance</span>
+            <span class="currency">CHF</span>
+          </div>
+          <span class="balanceAmount">0.00</span>
+        </div>
+        <div class="cashIncome">
+          <span><i class="fa-solid fa-arrow-down-wide-short"></i>&nbsp Income</span>
+          <div>
+            <span class="incomeTotal">0.00</span>
+            <span class="currency"> CHF</span>
+          </div>
+        </div>
+        <div class="cashExpenses">
+          <span><i class="fa-solid fa-arrow-up-short-wide"></i>&nbsp Expenses</span>
+          <div>
+            <span class="expensesTotal">0.00</span>
+            <span class="currency"> CHF</span>
+          </div>
+        </div>
+      </div>
+      <div class="cashflow">
+        <span>Cashflow: </span>
+        <span class="cashflowAmount">0.00</span>
+        <span class="currency"> CHF</span>
+      </div>
+      <div class="transactionHistory">
+      </div>
+    </div>
+    <div class="overviewBottomMenu">
+      <span id="homeBtn" class="active tagWtBtn"><i class="fa-solid fa-house"></i>home</span>
+      <span id="addBtn" class="tags-circle-fixed-width rotateBack"><i class="fa-solid fa-plus"></i></span>
+      <span id="accountsBtn" class="tagWtBtn"><i class="fa-solid fa-wallet"></i>Accounts</span>
+    </div>
+  </div>
+  <div class="accounts container">
+    <div class="accountsTopMenu topMenu">
+      <span><i class="fa-solid fa-angle-left tags-circle border"></i></span>
+      <div class="accountsTitle">
+        <h2>Accounts</h2>
+        <div class="allAccountsTotal">
+          <span>Total: </span>
+          <span class="currency">CHF </span>
+          <span class="totalAmount">0.00</span>
+        </div>
+      </div>
+      <span><i class="fa-solid fa-list-ul tags-circle border"></i></span>
+    </div>
+    <div class="accountsBody">
+      <div class="accountEntry" data-acc-id="Cash">
+        <div class="accountInfo" style="background-color: var(--neon-green)">
+          <span class="accountEntryName"><i class="fa-solid fa-dollar-sign tags-circle-small"></i>Cash</span>
+          <div class="accountAmountTotal">
+            <span class="accountTotal">0.00</span>
+            <span class="currency">CHF</span>
+          </div>
+        </div>
+        <div class="balanceThisMonth">
+          <div class="accountIncome">
+            <span>Income diesen Monat</span>
+            <div class="ThisMonthIncomeTotal">
+              <span class="amountTotal">0.00</span>
+              <span class="currency">CHF</span>
+            </div>
+          </div>
+          <div class="accountExpense">
+            <span>Expenses diesen Monat</span>
+            <div class="ThisMonthExpensesTotal">
+              <span class="amountTotal"><b>0.00</b></span>
+              <span class="currency">CHF</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="accountEntry" data-acc-id="Bank">
+        <div class="accountInfo" style="background-color: var(--neon-blue);">
+          <span class="accountEntryName"><i class="fa-solid fa-building-columns tags-circle-small"></i>Bank</span>
+          <div class="accountAmountTotal">
+            <span class="accountTotal">0.00</span>
+            <span class="currency">CHF</span>
+          </div>
+        </div>
+        <div class="balanceThisMonth">
+          <div class="accountIncome">
+            <span>Income diesen Monat</span>
+            <div class="ThisMonthIncomeTotal">
+              <span class="amountTotal"><b>0.00</b></span>
+              <span class="currency">CHF</span>
+            </div>
+          </div>
+          <div class="accountExpense">
+            <span>Expenses diesen Monat</span>
+            <div class="ThisMonthExpensesTotal">
+              <span class="amountTotal"><b>0.00</b></span>
+              <span class="currency">CHF</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="overviewBottomMenu">
+      <span id="homeBtn" class="tagWtBtn"><i class="fa-solid fa-house"></i>home</span>
+      <span id="addBtn" class="tags-circle-fixed-width"><i class="fa-solid fa-plus"></i></span>
+      <span id="accountsBtn" class="tagWtBtn active"><i class="fa-solid fa-wallet"></i>Accounts</span>
+    </div>
+  </div>
+  <div class="income container">
+    <div class="incomeTopMenu topMenu">
+      <span><i class="fa-solid fa-xmark"></i></span>
+      <div class="monthlyView">
+        <span class="prevMonth"><i class="fa-solid fa-angle-left"></i></span>
+        <span class="monthFilter tagWtBtn"><i class="fa-solid fa-calendar"></i>März</span>
+        <span class="nextMonth"><i class="fa-solid fa-angle-right"></i></span>
+      </div>
+      <span><i class="fa-solid fa-plus"></i></span>
+    </div>
+    <div class="incomeBody">
+      <div class="incomeTotal">
+        <h2>Income</h2>
+        <span class="amount">8'400.00</span>
+        <span class="Currency">CHF</span>
+      </div>
+      <div class="categoriesStats">
+        <div class="graphStats">
+          <canvas id="myIncomeChart" width="200" height="200"></canvas>
+          <!-- <span><i class="fa-solid fa-arrow-down-wide-short"></i></span> -->
+        </div>
+        <div class="transactionHistory">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="expenses container">
+    <div class="expensesTopMenu topMenu">
+      <span><i class="fa-solid fa-xmark"></i></span>
+      <div class="monthlyView">
+        <span class="prevMonth"><i class="fa-solid fa-angle-left"></i></span>
+        <span class="monthFilter tagWtBtn"><i class="fa-solid fa-calendar"></i>März</span>
+        <span class="nextMonth"><i class="fa-solid fa-angle-right"></i></span>
+      </div>
+      <span><i class="fa-solid fa-plus"></i></span>
+    </div>
+    <div class="expensesBody">
+      <h2>Expenses</h2>
+      <div class="expensesTotal">
+        <span class="amount">8'400.00</span>
+        <span class="Currency">CHF</span>
+      </div>
+      <div class="categoriesStats">
+        <div class="graphStats">
+          <canvas id="myExpensesChart" width="400" height="400"></canvas>
+          <!-- <span><i class="fa-solid fa-arrow-up-wide-short"></i></span> -->
+        </div>
+        <div class="transactionHistory">
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="currentBalance container">
+    <div class="currentBalanceTopMenu topMenu">
+      <button class="border"><i class="fa-solid fa-xmark fa-fw"></i></button>
+      <div class="monthlyView">   
+        <span><i class="fa-solid fa-angle-left"></i></span>
+        <span><i class="fa-solid fa-calendar"></i>März</span>
+        <span><i class="fa-solid fa-angle-right"></i></span>
+      </div>
+    </div>
+    <div class="currentBalanceBody">
+      <div class="balanceStatus">
+        <h2>current Balance</h2>
+        <span>CHF <b>7'200.&ordm;&ordm;</b></span>
+      </div>
+      <div class="plannedPayBalance">
+        <h2>balance after planned payments</h2>
+        <div class="plannedPayBalanceInfo">
+          <span>7'200.00 CHF</span>
+          <span>7200.00 CHF</span>
+          <span>+0.00 CHF</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="newIncomeEntryPage entryDetail container">
+    <div class="entryDetailTopMenu topMenu">
+      <button><i class="fa-solid fa-xmark fa-fw"></i></button>
+      <button class="setTransaction"><i class="fa-solid fa-arrow-down-short-wide fa-fw"></i>Income</button>
+    </div>
+    <div class="entryDetailBody">
+      <span class="title" contenteditable="true" data-placeholder="Income Title" data-focused-advice="Start typing..."></span>
+      <span class="categoryField tags-big category-tag border"><i class="fa-solid fa-slash"></i>Add category</span>
+      <span class="description box"><i class="fa-solid fa-align-left"></i>Add description</span>
+      <!-- <span class="creationDate box"><i class="fa-solid fa-calendar"></i><strong>Created on</strong>24 März at 16:57</span> -->
+      <div class="creationDate box">
+        <label for="createdOn"><i class="fa-solid fa-calendar"></i><strong>Created on</strong><input type="text" id="createdOn" onfocus="this.type='date'" onblur="this.type='text'"></label>
+      </div>
+      <span class="addPlannedPayment box"><i class="fa-solid fa-bolt-lightning"></i>Add planned date of payment</span>
+    </div>
+    <div class="actionBottomMenu active">
+      <h3>Add money to</h3>
+      <div class="accountsRow rows">
+        <span id="Cash" class="tags-big accounts-tag active" style="background-color: var(--neon-green);"><i class="fa-solid fa-dollar-sign tags-circle-small" style="background-color: var(--neon-green);"></i>Cash</span>
+        <span id="Bank" class="tags-big accounts-tag"><i class="fa-solid fa-building-columns tags-circle-small" style="background-color: var(--neon-blue);"></i>Bank</span>
+        <span class="tags-big"><i class="fa-solid fa-plus"></i>Add account</span>
+      </div>
+      <div class="amount">
+        <span class="addedAmount">0.00</span>
+        <span class="currency">CHF</span>
+      </div>
+      <div class="closeBottomMenu">
+        <button><i class="fa-solid fa-chevron-down fa-fw"></i></button>
+        <button><i class="fa-solid fa-floppy-disk fa-fw"></i>Save</button>
+      </div>
+    </div>
+    <div class="smallActionBottomMenu">
+      <div class="rows">
+        <div class="amount">
+          <span class="addedAmount">0.00</span>
+          <span class="currency">CHF</span>
+        </div>
+        <div class="addedToAccount">
+          <h4>Add money to</h4>
+          <span class="tags-big accounts-tag"><i class="fa-solid fa-dollar-sign"></i>Cash</span>
+        </div>
+      </div>
+      <div class="closeBottomMenu">
+        <button><i class="fa-solid fa-chevron-up fa-fw"></i></button>
+        <button><i class="fa-solid fa-floppy-disk fa-fw"></i>Save</button>
+      </div>
+    </div>
+  </div>
+  <div class="newExpensesEntryPage entryDetail container">
+    <div class="entryDetailTopMenu topMenu">
+      <button><i class="fa-solid fa-xmark fa-fw"></i></button>
+      <button class="setTransaction"><i class="fa-solid fa-arrow-down-short-wide fa-fw"></i>Expenses</button>
+    </div>
+    <div class="entryDetailBody">
+      <span class="title" contenteditable="true" data-placeholder="Expenses Title" data-focused-advice="Start typing..."></span>
+      <span class="categoryField tags-big category-tag border"><i class="fa-solid fa-slash"></i>Add category</span>
+      <span class="description box"><i class="fa-solid fa-align-left"></i>Add description</span>
+      <!-- <span class="creationDate box"><i class="fa-solid fa-calendar"></i><strong>Created on</strong>24 März at 16:57</span> -->
+      <div class="creationDate box">
+        <label for="createdOn"><i class="fa-solid fa-calendar"></i><strong>Created on</strong><input type="text" id="createdOn" onfocus="this.type='date'" onblur="this.type='text'"></label>
+      </div>
+      <span class="addPlannedPayment box"><i class="fa-solid fa-bolt-lightning"></i>Add planned date of payment</span>
+    </div>
+    <div class="actionBottomMenu active">
+      <h3>Pay with</h3>
+      <div class="accountsRow rows">
+        <span id="Cash" class="tags-big accounts-tag active" style="background-color: var(--neon-green);"><i class="fa-solid fa-dollar-sign tags-circle-small" style="background-color: var(--neon-green);"></i>Cash</span>
+        <span id="Bank" class="tags-big accounts-tag"><i class="fa-solid fa-building-columns tags-circle-small" style="background-color: var(--neon-blue);"></i>Bank</span>
+        <span class="tags-big"><i class="fa-solid fa-plus"></i>Add account</span>
+      </div>
+      <span class="addedAmount">0.00 CHF</span>
+      <div class="closeBottomMenu">
+        <button><i class="fa-solid fa-chevron-down fa-fw"></i></button>
+        <button><i class="fa-solid fa-floppy-disk fa-fw"></i>Save</button>
+      </div>
+    </div>
+    <div class="smallActionBottomMenu">
+      <div class="rows">
+        <span class="addedAmount">0.00 CHF</span>
+        <div class="addedToAccount">
+          <h4>Add money to</h4>
+          <span class="tags-big accounts-tag"><i class="fa-solid fa-dollar-sign"></i>Cash</span>
+        </div>
+      </div>
+      <div class="closeBottomMenu">
+        <button><i class="fa-solid fa-chevron-up fa-fw"></i></button>
+        <button><i class="fa-solid fa-floppy-disk fa-fw"></i>Save</button>
+      </div>
+    </div>
+  </div>
+  <div class="newTransferEntryPage entryDetail container">
+    <div class="entryDetailTopMenu topMenu">
+      <button><i class="fa-solid fa-xmark fa-fw"></i></button>
+    </div>
+    <div class="entryDetailBody">
+      <span class="title" contenteditable="true" data-placeholder="Transfer Title" data-focused-advice="Start typing..."></span>
+      <span class="description box"><i class="fa-solid fa-align-left"></i>Add description</span>
+      <!-- <span class="creationDate box"><i class="fa-solid fa-calendar"></i><strong>Created on</strong>24 März at 16:57</span> -->
+      <div class="creationDate box">
+        <label for="createdOn"><i class="fa-solid fa-calendar"></i><strong>Created on</strong><input type="text" id="createdOn" onfocus="this.type='date'" onblur="this.type='text'" placeholder="24 März 16:57"></label>
+      </div>
+    </div>
+    <div class="actionBottomMenu active">
+      <h3>From</h3>
+      <div class="accountsRow rows">
+        <span id="Cash" class="tags-big accounts-tag active" style="background-color: var(--neon-green);"><i class="fa-solid fa-dollar-sign tags-circle-small" style="background-color: var(--neon-green);"></i>Cash</span>
+        <span id="Bank" class="tags-big accounts-tag"><i class="fa-solid fa-building-columns tags-circle-small" style="background-color: var(--neon-blue);"></i>Bank</span>
+        <span class="tags-big"><i class="fa-solid fa-plus"></i>Add account</span>
+      </div>
+      <h3>To</h3>
+      <div class="secondAccountsRow rows">
+      </div>
+      <span class="addedAmount">0.00 CHF</span>
+      <div class="closeBottomMenu">
+        <button><i class="fa-solid fa-chevron-down fa-fw"></i></button>
+        <button><i class="fa-solid fa-floppy-disk fa-fw"></i>Save</button>
+      </div>
+    </div>
+    <div class="smallActionBottomMenu">
+      <div class="addedToAccount">
+        <span class="tags-big accounts-tag"><i class="fa-solid fa-dollar-sign"></i>Cash</span>
+        <span class="tags-big accounts-tag"><i class="fa-solid fa-dollar-sign"></i>Cash</span>
+      </div>
+      <div class="rows">
+        <span class="addedAmount">0.00 CHF</span>
+      </div>
+      <div class="closeBottomMenu">
+        <button><i class="fa-solid fa-chevron-up fa-fw"></i></button>
+        <button><i class="fa-solid fa-floppy-disk fa-fw"></i>Save</button>
+      </div>
+    </div>
+  </div>
+  <div class="incomeEntryPage entryDetail container">
+    <div class="entryDetailTopMenu topMenu">
+      <button><i class="fa-solid fa-xmark fa-fw"></i></button>
+      <button class="setTransaction"><i class="fa-solid fa-arrow-down-short-wide fa-fw"></i>Income</button>
+      <button class="deleteBtn"><i class="fa-solid fa-trash-can fa-fw"></i></button>
+    </div>
+    <div class="entryDetailBody">
+      <h2 contenteditable="true">Income title</h2>
+      <span class="categoryField tags-big lohn-tag category-tag"><i class="fa-solid fa-money-check-dollar"></i>Lohn<i class="fa-solid fa-chevron-right"></i></span>
+      <span class="description box"><i class="fa-solid fa-align-left"></i>Add description</span>
+      <span class="creationDate box"><i class="fa-solid fa-calendar"></i><strong>Created on</strong>24 März at 16:57</span>
+    </div>
+    <div class="actionBottomMenu active">
+      <h3>Add money to</h3>
+      <div class="accountsRow rows">
+        <span class="tags-big accounts-tag active"><i class="fa-solid fa-dollar-sign"></i>Cash</span>
+        <span class="tags-big accounts-tag"><i class="fa-solid fa-building-columns"></i>Bank</span>
+        <span class="tags-big"><i class="fa-solid fa-plus"></i>Add account</span>
+      </div>
+      <span class="addedAmount">1'000.00 CHF</span>
+      <div class="closeBottomMenu">
+        <button><i class="fa-solid fa-chevron-down fa-fw"></i></button>
+        <button><i class="fa-solid fa-floppy-disk fa-fw"></i>Save</button>
+      </div>
+    </div>
+    <div class="smallActionBottomMenu">
+      <div class="rows">
+        <span class="addedAmount">0.00 CHF</span>
+        <div class="addedToAccount">
+          <h4>Add money to</h4>
+          <span class="tags-big accounts-tag"><i class="fa-solid fa-dollar-sign"></i>Cash</span>
+        </div>
+      </div>
+      <div class="closeBottomMenu">
+        <button><i class="fa-solid fa-chevron-up fa-fw"></i></button>
+        <button><i class="fa-solid fa-floppy-disk fa-fw"></i>Save</button>
+      </div>
+    </div>
+  </div>
+  <div class="expensesEntryPage entryDetail container">
+    <div class="entryDetailTopMenu topMenu">
+      <button><i class="fa-solid fa-xmark fa-fw"></i></button>
+      <button class="setTransaction"><i class="fa-solid fa-arrow-up-wide-short fa-fw"></i>Expense</button>
+      <button class="deleteBtn"><i class="fa-solid fa-trash-can fa-fw"></i></button>
+    </div>
+    <div class="entryDetailBody">
+      <h2 contenteditable="true">Expense title</h2>
+      <span class="categoryField tags-big lohn-tag category-tag"><i class="fa-solid fa-house"></i>Miete<i class="fa-solid fa-chevron-right"></i></span>
+      <span class="description box"><i class="fa-solid fa-align-left"></i>Add description</span>
+      <div class="creationDate box">
+        <label for="createdOn"><i class="fa-solid fa-calendar"></i><strong>Created on</strong><input type="text" id="createdOn" onfocus="this.type='date'" onblur="this.type='text'" placeholder="24 März 16:57"></label>
+      </div>
+    </div>
+    <div class="actionBottomMenu active">
+      <h3>Pay with</h3>
+      <div class="accountsRow rows">
+        <span class="tags-big accounts-tag active"><i class="fa-solid fa-dollar-sign"></i>Cash</span>
+        <span class="tags-big accounts-tag"><i class="fa-solid fa-building-columns"></i>Bank</span>
+        <span class="tags-big"><i class="fa-solid fa-plus"></i>Add account</span>
+      </div>
+      <span class="addedAmount">1'000.00 CHF</span>
+      <div class="closeBottomMenu">
+        <button><i class="fa-solid fa-chevron-down fa-fw"></i></button>
+        <button><i class="fa-solid fa-floppy-disk fa-fw"></i>Save</button>
+      </div>
+    </div>
+    <div class="smallActionBottomMenu">
+      <div class="rows">
+        <span class="addedAmount">0.00 CHF</span>
+        <div class="addedToAccount">
+          <h4>Add money to</h4>
+          <span class="tags-big accounts-tag"><i class="fa-solid fa-dollar-sign"></i>Cash</span>
+        </div>
+      </div>
+      <div class="closeBottomMenu">
+        <button><i class="fa-solid fa-chevron-up fa-fw"></i></button>
+        <button><i class="fa-solid fa-floppy-disk fa-fw"></i>Save</button>
+      </div>
+    </div>
+  </div>
+  <div class="transferEntryPage entryDetail container">
+    <div class="entryDetailTopMenu topMenu">
+      <button><i class="fa-solid fa-xmark fa-fw"></i></button>
+      <button class="deleteBtn"><i class="fa-solid fa-trash-can fa-fw"></i></button>
+    </div>
+    <div class="entryDetailBody">
+      <h2 contenteditable="true">Transfer title</h2>
+      <span class="description box"><i class="fa-solid fa-align-left"></i>Add description</span>
+      <div class="creationDate box">
+        <label for="createdOn"><i class="fa-solid fa-calendar"></i><strong>Created on</strong><input type="text" id="createdOn" onfocus="this.type='date'" onblur="this.type='text'" placeholder="24 März 16:57"></label>
+      </div>
+    </div>
+    <div class="actionBottomMenu active">
+      <h3>From</h3>
+      <div class="accountsRow rows">
+        <span class="tags-big accounts-tag active"><i class="fa-solid fa-dollar-sign"></i>Cash</span>
+        <span class="tags-big accounts-tag"><i class="fa-solid fa-building-columns"></i>Bank</span>
+        <span class="tags-big"><i class="fa-solid fa-plus"></i>Add account</span>
+      </div>
+      <h3>To</h3>
+      <div class="accountsRow rows">
+        <span class="tags-big accounts-tag"><i class="fa-solid fa-dollar-sign"></i>Cash</span>
+        <span class="tags-big accounts-tag"><i class="fa-solid fa-building-columns"></i>Bank</span>
+        <span class="tags-big"><i class="fa-solid fa-plus"></i>Add account</span>
+      </div>
+      <span class="addedAmount">1'000.00 CHF</span>
+      <div class="closeBottomMenu">
+        <button><i class="fa-solid fa-chevron-down fa-fw"></i></button>
+        <button><i class="fa-solid fa-floppy-disk fa-fw"></i>Save</button>
+      </div>
+    </div>
+    <div class="smallActionBottomMenu">
+      <div class="addedToAccount">
+        <span class="tags-big accounts-tag"><i class="fa-solid fa-dollar-sign"></i>Cash</span>
+        <span class="tags-big accounts-tag"><i class="fa-solid fa-dollar-sign"></i>Cash</span>
+      </div>
+      <div class="rows">
+        <span class="addedAmount">0.00 CHF</span>
+      </div>
+      <div class="closeBottomMenu">
+        <button><i class="fa-solid fa-chevron-up fa-fw"></i></button>
+        <button><i class="fa-solid fa-floppy-disk fa-fw"></i>Save</button>
+      </div>
+    </div>
+  </div>
+  <div class="accountEntryDetails tagDetails container" data-acc-id="Cash" style="background-color: var(--neon-green);">
+    <div class="tagTopMenu topMenu">
+      <button class="closeAccBtn"><i class="fa-solid fa-xmark fa-fw"></i></button>
+      <button class="editAccBtn"><i class="fa-solid fa-pen"></i>Edit</button>
+      <button class="deleteAccBtn"><i class="fa-solid fa-trash-can fa-fw"></i></button>
+    </div>
+    <div class="tagBody">
+      <div class="cashBalForTag box-3">
+        <h2><i class="fa-solid fa-dollar-sign tags-circle-small"></i>Cash</h2>
+        <div class="tagTotalBalance">
+          <span class="Currency">CHF</span>
+          <span class="tagTotalAmount">1'200</span>
+        </div>
+      </div>
+      <div class="incomeForTag tagBox box-3">
+        <h4>Income</h4>
+        <spav class="amount">0.00</spav>
+        <span class="Currency">Schweizer Franken</span>
+        <span class="transactionsNr">0</span>
+        <span>transactions</span>
+        <button>Add Income</button>
+      </div>
+      <div class="expensesForTag tagBox box-3">
+        <h4>Expenses</h4>
+        <spav class="amount">0.00</spav>
+        <span class="Currency">Schweizer Franken</span>
+        <span class="transactionsNr">0</span>
+        <span>transactions</span>
+        <button>Add Expenses</button>
+      </div>
+    </div>
+    <div class="tagOverviewBottomMenu">
+      <div class="monthlyView">
+        <span class="prevMonth"><i class="fa-solid fa-angle-left"></i></span>
+        <span class="monthFilter tagWtBtn"><i class="fa-solid fa-calendar"></i>März</span>
+        <span class="nextMonth"><i class="fa-solid fa-angle-right"></i></span>
+      </div>
+      <div class="transactionHistory">
+      </div>
+    </div>
+  </div>
+  <div class="accountEntryDetails tagDetails container" data-acc-id="Bank" style="background-color: var(--neon-blue);">
+    <div class="tagTopMenu topMenu">
+      <button class="closeAccBtn"><i class="fa-solid fa-xmark fa-fw"></i></button>
+      <button class="editAccBtn"><i class="fa-solid fa-pen"></i>Edit</button>
+      <button class="deleteAccBtn"><i class="fa-solid fa-trash-can fa-fw"></i></button>
+    </div>
+    <div class="tagBody">
+      <div class="cashBalForTag box-3">
+        <h2><i class="fa-solid fa-building-columns tags-circle-small"></i>Bank</h2>
+        <div class="tagTotalBalance">
+          <span class="Currency">CHF</span>
+          <span class="tagTotalAmount">1'200</span>
+        </div>
+      </div>
+      <div class="incomeForTag tagBox box-3">
+        <h4>Income</h4>
+        <spav class="amount">0.00</spav>
+        <span class="Currency">Schweizer Franken</span>
+        <span class="transactionsNr">0</span>
+        <span>transactions</span>
+        <button>Add Income</button>
+      </div>
+      <div class="expensesForTag tagBox box-3">
+        <h4>Expenses</h4>
+        <spav class="amount">0.00</spav>
+        <span class="Currency">Schweizer Franken</span>
+        <span class="transactionsNr">0</span>
+        <span>transactions</span>
+        <button>Add Expenses</button>
+      </div>
+    </div>
+    <div class="tagOverviewBottomMenu">
+      <div class="monthlyView">
+        <span class="prevMonth"><i class="fa-solid fa-angle-left"></i></span>
+        <span class="monthFilter tagWtBtn"><i class="fa-solid fa-calendar"></i>März</span>
+        <span class="nextMonth"><i class="fa-solid fa-angle-right"></i></span>
+      </div>
+      <div class="transactionHistory">
+      </div>
+    </div>
+  </div>
+  <div class="overlay"></div>
+  <div class="add-container popupMenu2">
+    <div class="plannedPayment">
+      <button><i class="fa-solid fa-bolt-lightning fa-fw"></i>Add planned payment</button>
+    </div>
+    <div class="addMenu">
+      <div class="add">
+        <button class="addIncome"><i class="fa-solid fa-arrow-down-wide-short fa-fw"></i></button>
+        <span>Add Income</span>
+      </div>
+      <div class="add">
+        <button class="addExpense"><i class="fa-solid fa-arrow-up-wide-short fa-fw"></i></button>
+        <span>Add Expense</span>
+      </div>
+      <div class="add">
+        <button class="accountTransfer"><i class="fa-solid fa-shuffle fa-fw"></i></button>
+        <span>Account Transfer</span>
+      </div>
+    </div>
+    <div class="close">
+      <button class="tags-circle-fixed-width"><i class="fa-solid fa-plus fa-fw fa-rotate-by"></i></button>
+    </div>
+  </div>
+  <div class="chooseAccountMenu popupMenu">
+    <h2>Account</h2>
+    <div class="accountsRow rows">
+      <span id="Cash" class="tags-big accounts-tag active" style="background-color: var(--neon-green);"><i class="fa-solid fa-dollar-sign tags-circle-small" style="background-color: var(--neon-green);"></i>Cash</span>
+      <span id="Bank" class="tags-big accounts-tag"><i class="fa-solid fa-building-columns tags-circle-small" style="background-color: var(--neon-blue);"></i>Bank</span>
+      <span class="tags-big"><i class="fa-solid fa-plus"></i>Add account</span>
+    </div>
+    <div class="amountToAdd">
+      <span class="amount">0</span>
+      <span class="currency">CHF</span>
+    </div>
+    <div class="numberKeypad">
+      <button class="numbers" style="width: 3.5em;">1</button>
+      <button class="numbers" style="width: 3.5em;">2</button>
+      <button class="numbers" style="width: 3.5em;">3</button>
+      <button class="numbers" style="width: 3.5em;">4</button>
+      <button class="numbers" style="width: 3.5em;">5</button>
+      <button class="numbers" style="width: 3.5em;">6</button>
+      <button class="numbers" style="width: 3.5em;">7</button>
+      <button class="numbers" style="width: 3.5em;">8</button>
+      <button class="numbers" style="width: 3.5em;">9</button>
+      <button class="numbers" style="width: 3.5em;">.</button>
+      <button class="numbers" style="width: 3.5em;">0</button>
+      <button class="delete border" style="width: 3.5em"><i class="fa-solid fa-delete-left"></i></button>
+    </div>
+    <div class="closeBottomMenu">
+      <button><i class="fa-solid fa-xmark fa-fw"></i></button>
+      <button><i class="fa-solid fa-calculator fa-fw"></i></button>
+      <button><i class="fa-solid fa-check fa-fw"></i>Enter</button>
+    </div>
+  </div>
+  <div class="chooseCategoryMenu popupMenu">
+    <h2>Choose category</h2>
+    <div class="categoriesRow rows">
+      <span class="tags-big"><i class="fa-solid fa-plus"></i>Add new</span>
+    </div>
+    <div class="closeBottomMenu">
+      <button><i class="fa-solid fa-xmark fa-fw"></i></button>
+      <button>Skip</button>
+    </div>
+  </div>
+  <div class="createCategoryMenu popupMenu">
+    <h2>Create category</h2>
+    <div class="categoryName">
+      <span class="tags-circle category-tag"><i class="fa-solid fa-money-check-dollar fa-fw fa-1x"></i></span>
+      <input type="text" placeholder="Category Name">
+    </div>
+    <span>Choose color</span>
+    <div class="colorRow">
+      <span class="tags-circle active" style="background-color: var(--tag-red);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-red);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-orange);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-orange);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-yellow);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-yellow);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-green);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-green);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-turkis);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-turkis);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-blue);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-blue);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-purple);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-purple);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-rosa);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-rosa);"></span>
+    </div>
+    <div class="closeBottomMenu">
+      <button><i class="fa-solid fa-xmark fa-fw"></i></button>
+      <button><i class="fa-solid fa-plus"></i>Add</button>
+    </div>
+  </div>
+  <div class="chooseIconMenu popupMenu">
+    <h2>Choose Icon</h2>
+    <div class="iconGrid">
+      <span class="tags-circle fa-fw active"><i class="fa-solid fa-wallet fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-box-archive fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-dollar-sign fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-credit-card fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-shirt fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-people-roof fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-star fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-graduation-cap fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-dumbbell fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-clipboard-list fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-burger fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-truck fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-paw fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-utensils fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-house-user fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-briefcase fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-car fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-globe fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-book fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-cake-candles fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-calculator fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-camera fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-temperature-half fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-mug-saucer fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-sitemap fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-hourglass fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-stethoscope fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-align-left fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-beer-mug-empty fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-pills fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-fingerprint fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-fish fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-pizza-slice fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-inbox fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-dice fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-gamepad fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-gear fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-gift fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-shop fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-mobile fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-suitcase-medical fa-fw"></i></span>
+      <span class="tags-circle fa-fw"><i class="fa-solid fa-headphones fa-fw"></i></span>
+    </div>
+    <div class="closeBottomMenu">
+      <button><i class="fa-solid fa-xmark fa-fw"></i></button>
+      <button><i class="fa-solid fa-floppy-disk"></i>Save</button>
+    </div>
+  </div>
+  <div class="editCategoryMenu popupMenu">
+    <h2>Edit Category</h2>
+    <div class="categoryName">
+      <span class="tags-circle category-tag"><i class="fa-solid fa-money-check-dollar fa-fw fa-1x"></i></span>
+      <input type="text" placeholder="Category Name">
+    </div>
+    <span>Choose color</span>
+    <div class="colorRow">
+      <span class="tags-circle active" style="background-color: var(--tag-red);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-red);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-orange);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-orange);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-yellow);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-yellow);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-green);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-green);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-turkis);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-turkis);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-blue);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-blue);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-purple);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-purple);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-rosa);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-rosa);"></span>
+    </div>
+    <div class="closeBottomMenu">
+      <button><i class="fa-solid fa-xmark fa-fw"></i></button>
+      <button><i class="fa-solid fa-floppy-disk"></i>Save</button>
+    </div>
+  </div>
+  <div class="newAccountMenu popupMenu">
+    <h2>New account</h2>
+    <div class="categoryName">
+      <span class="tags-circle category-tag"><i class="fa-solid fa-money-check-dollar fa-fw fa-1x"></i></span>
+      <input type="text" placeholder="Account Name">
+    </div>
+    <span>Choose color</span>
+    <div class="colorRow">
+      <span class="tags-circle active" style="background-color: var(--tag-red);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-red);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-orange);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-orange);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-yellow);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-yellow);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-green);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-green);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-turkis);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-turkis);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-blue);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-blue);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-purple);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-purple);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-rosa);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-rosa);"></span>
+    </div>
+    <div class="accountBalance">
+      <span>enter account ballance</span>
+      <span class="amountToAdd">0.00 CHF</span>
+    </div>
+    <div class="closeBottomMenu">
+      <button><i class="fa-solid fa-xmark fa-fw"></i></button>
+      <button><i class="fa-solid fa-floppy-disk"></i>Save</button>
+    </div>
+  </div>
+  <div class="editAccountMenu popupMenu">
+    <h2>Edit Account</h2>
+    <div class="accountName">
+      <span class="tags-circle account-tag"><i class="fa-solid fa-money-check-dollar fa-fw fa-1x"></i></span>
+      <input type="text" placeholder="Account Name">
+    </div>
+    <span>Choose color</span>
+    <div class="colorRow">
+      <span class="tags-circle active" style="background-color: var(--tag-red);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-red);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-orange);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-orange);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-yellow);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-yellow);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-green);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-green);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-turkis);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-turkis);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-blue);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-blue);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-purple);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-purple);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-rosa);"></span>
+      <span class="tags-circle" style="background-color: var(--tag-light-rosa);"></span>
+    </div>
+    <div class="accountBalance">
+      <span>enter account ballance</span>
+      <span class="amountToAdd">0.00 CHF</span>
+    </div>
+    <div class="closeBottomMenu">
+      <button><i class="fa-solid fa-xmark fa-fw"></i></button>
+      <button><i class="fa-solid fa-floppy-disk"></i>Save</button>
+    </div>
+  </div>
+  <div class="deleteConfirmationMenu deleteCategory popupMenu">
+    <h2>Confirm deletion</h2>
+    Note: Deleting this category will remove it permanently.
+    <div class="closeBottomMenu">
+      <button><i class="fa-solid fa-xmark fa-fw"></i></button>
+      <button><i class="fa-solid fa-trash-can"></i>Delete</button>
+    </div>
+  </div>
+  <div class="deleteConfirmationMenu deleteAccount popupMenu">
+    <h2>Confirm deletion</h2>
+    Note: Deleting this account will remove it permanently and delete all associated transactions with it.
+    <div class="closeBottomMenu">
+      <button><i class="fa-solid fa-xmark fa-fw"></i></button>
+      <button><i class="fa-solid fa-trash-can"></i>Delete</button>
+    </div>
+  </div>
+  <div class="deleteConfirmationMenu deleteUserData popupMenu">
+    <h2>Confirm deletion</h2>
+    Note: Deleting all user data will remove it permanently and delete all settings, transactions, accounts & categories with it.
+    <div class="closeBottomMenu">
+      <button><i class="fa-solid fa-xmark fa-fw"></i></button>
+      <button><i class="fa-solid fa-trash-can"></i>Delete</button>
+    </div>
+  </div>
+  <div class="deleteConfirmationMenu deleteTransaction popupMenu">
+    <h2>Confirm deletion</h2>
+    Deleting this transaction will remove it from the transaction history and update the balance accordingly.
+    <div class="closeBottomMenu">
+      <button><i class="fa-solid fa-xmark fa-fw"></i></button>
+      <button><i class="fa-solid fa-trash-can"></i>Delete</button>
+    </div>
+  </div>
+  <div class="editDescriptionMenu popupMenu">
+    <h2>Description</h2>
+    <input type="text" placeholder="Enter any details here (supports Markdown)">
+    <div class="closeBottomMenu">
+      <button><i class="fa-solid fa-xmark fa-fw"></i></button>
+      <button><i class="fa-solid fa-plus"></i>Add</button>
+    </div>
+  </div>
+  <div class="setTransactionMenu popupMenu">
+    <h2>Set transaction type</h2>
+    <div class="transactionTypeRow">
+      <span class="box"><i class="fa-solid fa-arrow-down-wide-short"></i>Income</span>
+      <span class="box"><i class="fa-solid fa-arrow-up-short-wide"></i>Expenses</span>
+      <span class="box"><i class="fa-solid fa-shuffle"></i>Transfer</span>
+    </div>
+    <div class="closeBottomMenu">
+      <button><i class="fa-solid fa-xmark fa-fw"></i></button>
+      <button><i class="fa-solid fa-check fa-fw"></i>Set</button>
+    </div>
+  </div>
+  <div class="setPaymentMenu popupMenu">
+    <h2>Set payment type</h2>
+    <div class="transactionTypeRow">
+      <span class="box active"><i class="fa-solid fa-arrow-down-wide-short"></i>Income</span>
+      <span class="box"><i class="fa-solid fa-arrow-up-short-wide"></i>Expenses</span>
+    </div>
+    <div class="closeBottomMenu">
+      <button><i class="fa-solid fa-xmark fa-fw"></i></button>
+      <button><i class="fa-solid fa-check fa-fw"></i>Set</button>
+    </div>
+  </div>
+  <div class="reorderAccounts popupMenu">
+    <h2>Reorder Accounts</h2>
+    <div class="reorderList">
+    </div>
+    <div class="closeBottomMenu">
+      <button><i class="fa-solid fa-xmark fa-fw"></i></button>
+      <button><i class="fa-solid fa-check fa-fw"></i>Set</button>
+    </div>
+  </div>
+  <div class="chooseMonthMenu popupMenu">
+    <h2>Choose month</h2>
+    <div class="monthsRow rows">
+      <span class="tags-big month-tag">Januar</span>
+      <span class="tags-big month-tag">Februar</span>
+      <span class="tags-big month-tag">März</span>
+      <span class="tags-big month-tag">April</span>
+      <span class="tags-big month-tag">Mai</span>
+      <span class="tags-big month-tag">Juni</span>
+      <span class="tags-big month-tag">Juli</span>
+      <span class="tags-big month-tag">August</span>
+      <span class="tags-big month-tag">September</span>
+      <span class="tags-big month-tag">Oktober</span>
+      <span class="tags-big month-tag">November</span>
+      <span class="tags-big month-tag">Dezember</span>
+    </div>
+    <div class="customRange">
+      <h3>or custom range</h3>
+      <input type="text" onfocus="this.type='date'" onblur="this.type='text'" class="fromDate tags-big" placeholder="From Date">
+        <!-- <span>From</span>
+        <span>Add date</span>
+      </input> -->
+      <input type='text' onfocus="this.type='date'" onblur="this.type='text'" class="toDate tags-big" placeholder="To Date">
+    </div>
+    <div class="inTheLast">
+      <h3>or in the last</h3>
+      <div>
+        <input type="number" name="" id="numberInput" class="tags-big">
+        <!-- <span class="tags-big">0</span> -->
+        <!-- <span class="tags-big"><i class="fa-solid fa-chevron-left fa-fw"></i>Weeks<i class="fa-solid fa-chevron-right fa-fw"></i></span> -->
+        <select class="tags-big" name="" id="selectTimeFrame">
+          <option value="Days">Days</option>
+          <option value="Weeks">Weeks</option>
+          <option value="Months">Months</option>
+          <option value="Years">Years</option>
+        </select>
+      </div>
+    </div>
+    <div class="allTime">
+      <h3>or all time</h3>
+      <span class="tags-big" data-enabled="Unselect All Time">Select All Time</span>
+    </div>
+    <div class="closeBottomMenu">
+      <button><i class="fa-solid fa-xmark fa-fw"></i></button>
+      <button><i class="fa-solid fa-check fa-fw"></i>Set</button>
+    </div>
+  </div>
+  <div class="planForMenu popupMenu">
+    <h2>Plan for</h2>
+    <div class="amountTime tags-big">
+      <span class="tags-big">One time</span>
+      <span class="tags-big active">Multiple times</span>
+    </div>
+    <div class="startsOn customRange">
+      <h3>Starts on</h3>
+      <input type='text' onfocus="this.type='date'" onblur="this.type='text'" class="tags-big border" placeholder="Datum eintragen">
+    </div>
+    <div class="repeatsEvery inTheLast">
+      <h3>Repeats every</h3>
+      <div>
+        <input type="number" name="" id="numberInput" class="tags-big border">
+        <select class="tags-big border" name="" id="">
+          <option value="Days">Days</option>
+          <option value="Weeks">Weeks</option>
+          <option value="Months">Months</option>
+          <option value="Years">Years</option>
+        </select>
+      </div>
+    </div>
+    <div class="closeBottomMenu">
+      <button><i class="fa-solid fa-xmark fa-fw"></i></button>
+      <button><i class="fa-solid fa-check fa-fw"></i>Set</button>
+    </div>
+  </div>
+  <div class="categories container">
+    <div class="categoriesTopMenu topMenu">
+      <span><i class="fa-solid fa-angle-left tags-circle border"></i></span>
+      <div class="categoriesTitle">
+        <h2>Categories</h2>
+        <div class="allCategoriesTotal">
+          <span>Total: </span>
+          <span class="currency">CHF </span>
+          <span class="totalAmount">8'400.00</span>
+        </div>
+      </div>
+      <span><i class="fa-solid fa-list-ul tags-circle border"></i></span>
+    </div>
+    <div class="categoriesBody">
+    </div>
+    <div class="overviewBottomMenu">
+      <span id="homeBtn" class="tagWtBtn"><i class="fa-solid fa-house"></i>home</span>
+      <span id="addBtn" class="tags-circle-fixed-width"><i class="fa-solid fa-plus"></i></span>
+      <span id="accountsBtn" class="tagWtBtn active"><i class="fa-solid fa-wallet"></i>Accounts</span>
+    </div>
+  </div>
+  <div class="searchResultMenu container">
+    <div class="searchResultTopMenu topMenu">
+      <span><i class="fa-solid fa-angle-left tags-circle border"></i></span>
+      <div class="searchBox border onlyBorderRadius">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" name="SearchBox" id="searchInput" placeholder="Search Transaction Title">
+      </div>
+    </div>
+    <div class="searchResultBody">
+    </div>
+  </div>
+  <nav class="settingsMenu topMenu hidden">
+    <h1>Settings</h1>
+    <span id="searchBtn" title="Search"><i class="fa-solid fa-magnifying-glass tags-circle border"></i></span>
+    <span id="categoriesBtn" title="Categories"><i class="fa-solid fa-tags tags-circle border fa-1x"></i></span>
+    <span id="deleteUserDataBtn" title="Delete All User Data"><i class="fa-solid fa-trash-can tags-circle border fa-1x"></i></span>
+    <span id="closeSettings" title="close Settings"><i class="fa-solid fa-bars-staggered tags-circle border"></i></span>
+  </nav>
+</body>
+</html>
