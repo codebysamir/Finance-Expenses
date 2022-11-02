@@ -183,11 +183,22 @@ function sumCurrentAccountBalance() {
     const allAccountsTotal = accountsMenu.querySelector('.totalAmount')
     const allAccountEntrys = accountsMenu.querySelectorAll('.accountEntry')
     allAccountEntrys.forEach(acc => {
-        balanceTotal += +acc.querySelector('.accountTotal').textContent
+        balanceTotal += +revFormNum(acc.querySelector('.accountTotal').textContent)
     })
 
     currentBalanceTotal.textContent = Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(balanceTotal)
     allAccountsTotal.textContent = Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(balanceTotal)
+}
+
+function sumCurrentCategoriesBalance() {
+    let balanceTotal = 0.00
+    const allCategoriesTotal = categoriesMenu.querySelector('.totalAmount')
+    const allCategorieEntrys = categoriesMenu.querySelectorAll('.categorieEntry')
+    allCategorieEntrys.forEach(cat => {
+        balanceTotal += +revFormNum(cat.querySelector('.categorieTotal').textContent)
+    })
+
+    allCategoriesTotal.textContent = Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(balanceTotal)
 }
 
 function sumAccountTotal(accountTag) {
@@ -2261,6 +2272,7 @@ function saveNewEntry({id, transactionType, title, category, description, date, 
         if (CatTransactionHistory) {
             sumCategorieTotal(incomeCategory.dataset.catId)
             sumCategoriesThisMonthBalance(incomeCategory.dataset.catId)
+            sumCurrentCategoriesBalance()
         }
         sumCurrentAccountBalance()
         sumCategoriesIncomeAndExpensesAmount()
@@ -2680,6 +2692,7 @@ function saveNewEntry({id, transactionType, title, category, description, date, 
     if (CatTransactionHistory) {
         sumCategorieTotal(incomeCategory.dataset.catId)
         sumCategoriesThisMonthBalance(incomeCategory.dataset.catId)
+        sumCurrentCategoriesBalance()
     }
     sumAccountTotal(incomeActiveAccount.querySelector('.active').id)
     sumAccountsThisMonthBalance(incomeActiveAccount.querySelector('.active').id)
@@ -2692,6 +2705,17 @@ let prevPageArr = []
 function prevPage(menu) {
     prevPageArr.unshift(menu)
     prevPageArr[0].classList.toggle('active')
+}
+
+function formNum(number) {
+    Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(number)
+}
+
+function revFormNum(number) {
+    const regex = /[0-9.]/g
+    const filtered = number.match(regex)
+    const reformatedNumb = filtered.join('')
+    return reformatedNumb
 }
 
 function sumTransactionTotalAmount(entrysParent) {
@@ -2713,7 +2737,7 @@ function sumCashflowTotalAmount() {
     const cashflowAmount = overviewMenu.querySelector('.cashflowAmount')
     const allTransactions = overviewMenu.querySelectorAll('.balanceEntryDate')
     allTransactions.forEach(transaction => {
-        if (!transaction.classList.contains('notDisplayed')) cashflowTotal += +transaction.querySelector('.amount').firstElementChild.textContent
+        if (!transaction.classList.contains('notDisplayed')) cashflowTotal += +revFormNum(transaction.querySelector('.amount').firstElementChild.textContent)
     })
     let positivSign = ''
     if (cashflowTotal.toString().charAt(0) !== '-') positivSign = '+'
@@ -2987,6 +3011,7 @@ deleteAccountConfirmation.lastElementChild.lastElementChild.addEventListener('cl
     accountsBody.removeChild(accountEntry)
 
     sumCurrentAccountBalance()
+    sumCurrentCategoriesBalance()
     sumCategoriesIncomeAndExpensesAmount()
     checkTransactionHistoryIsEmpty()    
 
@@ -3052,6 +3077,7 @@ deleteCategoryConfirmation.lastElementChild.lastElementChild.addEventListener('c
     categoriesBody.removeChild(categorieEntry)
 
     sumCurrentAccountBalance()
+    sumCurrentCategoriesBalance()
     sumCategoriesIncomeAndExpensesAmount()
     checkTransactionHistoryIsEmpty()    
 
@@ -3121,6 +3147,7 @@ agreeDelPopUp.addEventListener('click', () => {
     sumAccountsThisMonthBalance(activeEntryAccount)
     sumCurrentAccountBalance()
     sumCategoriesIncomeAndExpensesAmount()
+    sumCurrentCategoriesBalance()
     checkTransactionHistoryIsEmpty()
 
     overlay.classList.toggle('active')
